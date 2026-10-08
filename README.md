@@ -41,7 +41,7 @@ Dependencias: `express`, `mongoose`, `dotenv`, `cors`.
 
 ```env
 PORT=3000
-MONGODB_URI=<URI_MONGODB_ELIMINADA>
+MONGODB_URI=<TU_URI_DE_MONGODB_ATLAS>
 ```
 
 4. En Atlas → **Network Access**, agrega tu IP (o `0.0.0.0/0` para pruebas).

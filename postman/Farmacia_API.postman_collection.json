@@ -1,0 +1,175 @@
+{
+  "info": {
+    "name": "Farmacia API",
+    "description": "Colección para practicar el Sistema de Inventario y Despacho de Farmacia",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Registrar medicamento (sin receta)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo\": \"MED003\",\n  \"nombre\": \"Amoxicilina 500mg\",\n  \"cantidadStock\": 12,\n  \"fechaCaducidad\": \"2027-11-30\",\n  \"requiereReceta\": false,\n  \"stockMinimo\": 5\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/medicamentos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "medicamentos"]
+        }
+      }
+    },
+    {
+      "name": "2. Registrar medicamento (con receta)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo\": \"MED004\",\n  \"nombre\": \"Tramadol 50mg\",\n  \"cantidadStock\": 8,\n  \"fechaCaducidad\": \"2027-06-15\",\n  \"requiereReceta\": true,\n  \"stockMinimo\": 3\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/medicamentos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "medicamentos"]
+        }
+      }
+    },
+    {
+      "name": "3. Ver inventario",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/medicamentos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "medicamentos"]
+        }
+      }
+    },
+    {
+      "name": "4. Despachar medicamento normal",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo\": \"MED001\",\n  \"cantidad\": 2\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/despachos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "despachos"]
+        }
+      }
+    },
+    {
+      "name": "5. Despachar con receta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo\": \"MED004\",\n  \"cantidad\": 1,\n  \"recetaEntregada\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/despachos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "despachos"]
+        }
+      }
+    },
+    {
+      "name": "6. Ver historial de despachos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/despachos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "despachos"]
+        }
+      }
+    },
+    {
+      "name": "7. Prueba: rechazar sin receta (debe fallar)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo\": \"MED004\",\n  \"cantidad\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/despachos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "despachos"]
+        }
+      }
+    },
+    {
+      "name": "8. Prueba: stock insuficiente (debe fallar)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo\": \"MED001\",\n  \"cantidad\": 9999\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/despachos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "despachos"]
+        }
+      }
+    }
+  ]
+}
